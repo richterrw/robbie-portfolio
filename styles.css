@@ -237,32 +237,17 @@ body {
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  border: 1px solid rgba(94, 230, 214, 0.35);
-  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  background: transparent;
   color: #5ee6d6;
   text-decoration: none;
-  overflow: hidden;
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, color 0.18s ease, filter 0.18s ease;
 }
-
-.btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.26), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.55s ease;
-}
-.btn:hover::after { left: 140%; }
 
 .btn:hover {
-  transform: translateY(-3px);
-  border-color: rgba(94, 230, 214, 0.8);
-  background: rgba(94, 230, 214, 0.20);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px);
+  color: #8af3e6;
+  filter: drop-shadow(0 6px 14px rgba(94, 230, 214, 0.55));
 }
 
 .btn svg { flex-shrink: 0; }
