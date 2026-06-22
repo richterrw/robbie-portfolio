@@ -73,16 +73,14 @@ body {
 .card {
   position: relative;
   width: 100%;
-  background: rgba(12, 20, 38, 0.55);
+  background: rgba(12, 20, 38, 0.42);
   backdrop-filter: blur(20px) saturate(140%);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid var(--card-border);
+  border: none;
   border-radius: var(--radius);
   padding: 46px 40px 42px;
   text-align: center;
-  box-shadow:
-    0 40px 90px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
   /* entrance, then gently float in front of the background */
   animation:
     rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both,
@@ -92,20 +90,6 @@ body {
 @keyframes cardFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
-}
-
-/* gradient hairline border accent */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(109,139,255,0.6), rgba(167,121,255,0.1) 40%, transparent 60%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 
 /* ---------- Avatar ---------- */
