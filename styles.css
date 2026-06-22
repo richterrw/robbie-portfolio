@@ -1,8 +1,8 @@
 :root {
-  --bg: #07080c;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --bg: #0a1733;
+  --card-border: rgba(255, 255, 255, 0.10);
   --text: #f1f3f8;
-  --muted: #9aa0b0;
+  --muted: #aeb9d4;
   --accent: #6d8bff;
   --accent-2: #a779ff;
   --accent-3: #4ad6c8;
@@ -30,86 +30,30 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Animated aurora background ---------- */
-.aurora {
+/* ---------- Blue Ridge sunset photo background ---------- */
+.bg {
   position: fixed;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
-  filter: blur(60px);
+  background: url("background.jpg") center center / cover no-repeat;
+  /* slow gentle zoom for life */
+  animation: slowZoom 28s ease-in-out infinite alternate;
 }
 
-.blob {
-  position: absolute;
-  width: 46vmax;
-  height: 46vmax;
-  border-radius: 50%;
-  opacity: 0.55;
-  mix-blend-mode: screen;
-  will-change: transform;
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
 }
 
-.blob-1 {
-  background: radial-gradient(circle at center, var(--accent), transparent 65%);
-  top: -12%;
-  left: -10%;
-  animation: drift1 18s ease-in-out infinite;
-}
-
-.blob-2 {
-  background: radial-gradient(circle at center, var(--accent-2), transparent 65%);
-  bottom: -16%;
-  right: -8%;
-  animation: drift2 22s ease-in-out infinite;
-}
-
-.blob-3 {
-  background: radial-gradient(circle at center, var(--accent-3), transparent 65%);
-  top: 30%;
-  left: 35%;
-  opacity: 0.35;
-  animation: drift3 26s ease-in-out infinite;
-}
-
-@keyframes drift1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(8vw, 6vh) scale(1.15); }
-}
-@keyframes drift2 {
-  0%, 100% { transform: translate(0, 0) scale(1.05); }
-  50% { transform: translate(-7vw, -5vh) scale(0.9); }
-}
-@keyframes drift3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-6vw, 7vh) scale(1.2); }
-}
-
-/* ---------- Cursor spotlight ---------- */
-.spotlight {
+/* Darkening scrim for text contrast */
+.scrim {
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(
-    320px circle at var(--x, 50%) var(--y, 50%),
-    rgba(255, 255, 255, 0.06),
-    transparent 60%
-  );
-  transition: background 0.08s ease;
-}
-
-/* ---------- Subtle grid overlay ---------- */
-.grid-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 46px 46px;
-  mask-image: radial-gradient(circle at center, #000 30%, transparent 75%);
-  -webkit-mask-image: radial-gradient(circle at center, #000 30%, transparent 75%);
+  background:
+    radial-gradient(70% 60% at 50% 45%, rgba(6, 12, 26, 0.35), transparent 75%),
+    linear-gradient(180deg, rgba(6, 12, 26, 0.30) 0%, rgba(6, 12, 26, 0.10) 40%, rgba(6, 12, 26, 0.45) 100%);
 }
 
 /* ---------- Hero / card ---------- */
@@ -127,34 +71,26 @@ body {
 }
 
 .card {
+  position: relative;
   width: 100%;
-  background: rgba(18, 20, 28, 0.55);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  border: 1px solid var(--card-border);
+  background: rgba(12, 20, 38, 0.42);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: none;
   border-radius: var(--radius);
   padding: 46px 40px 42px;
   text-align: center;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+  /* entrance, then gently float in front of the background */
+  animation:
+    rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cardFloat 7s ease-in-out 0.9s infinite;
 }
 
-/* gradient hairline border accent */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(109,139,255,0.6), rgba(167,121,255,0.1) 40%, transparent 60%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
-.card { position: relative; }
 
 /* ---------- Avatar ---------- */
 .avatar {
@@ -192,7 +128,6 @@ body {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   z-index: 1;
 }
-/* show monogram only when the photo fails to load */
 .avatar.no-photo .avatar-fallback { display: flex; }
 
 .avatar-ring {
@@ -200,10 +135,10 @@ body {
   inset: -3px;
   border-radius: 50%;
   z-index: 0;
-  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+  background: conic-gradient(from 0deg, #5ee6d6, #2bd0bf, #bff6ec, #2bd0bf, #5ee6d6);
   animation: spin 6s linear infinite;
   filter: blur(2px);
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -227,7 +162,7 @@ body {
   line-height: 1.08;
   margin: 6px 0 14px;
   letter-spacing: -0.5px;
-  background: linear-gradient(110deg, #ffffff 20%, #b9c2ff 50%, #d9c4ff 80%);
+  background: linear-gradient(110deg, #ffffff 20%, #b9c2ff 50%, #cbe9e2 80%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -235,26 +170,69 @@ body {
   animation: shine 6s linear infinite, fadeUp 0.6s ease 0.25s both;
 }
 
-@keyframes shine {
-  to { background-position: 200% center; }
-}
+@keyframes shine { to { background-position: 200% center; } }
 
 .role {
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  color: #cdd4ff;
+  color: #bff6ec;
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 7px 16px;
-  margin-bottom: 18px;
-  border: 1px solid rgba(109, 139, 255, 0.3);
+  margin-bottom: 14px;
+  border: 1px solid rgba(94, 230, 214, 0.4);
   border-radius: 999px;
-  background: rgba(109, 139, 255, 0.1);
+  background: rgba(94, 230, 214, 0.12);
   opacity: 0;
   animation: fadeUp 0.6s ease 0.35s forwards;
+}
+
+/* ---------- Exam badges ---------- */
+.exams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.42s forwards;
+}
+
+.exam {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  color: #dbe6f7;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.exam::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9aa6c4;
+  box-shadow: 0 0 6px rgba(154, 166, 196, 0.5);
+}
+
+.exam-done {
+  color: #bff6ec;
+  background: rgba(94, 230, 214, 0.12);
+  border-color: rgba(94, 230, 214, 0.4);
+}
+
+.exam-done::before {
+  background: #5ee6d6;
+  box-shadow: 0 0 8px rgba(94, 230, 214, 0.8);
 }
 
 .role-dot {
@@ -278,8 +256,9 @@ body {
 }
 
 .tagline {
-  color: var(--muted);
+  color: #d7e0f3;
   font-size: 1.05rem;
+  line-height: 1.55;
   margin-bottom: 32px;
   opacity: 0;
   animation: fadeUp 0.6s ease 0.45s forwards;
@@ -289,7 +268,7 @@ body {
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   justify-content: center;
   opacity: 0;
   animation: fadeUp 0.6s ease 0.55s forwards;
@@ -299,57 +278,30 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 12px 20px;
-  border-radius: 13px;
-  border: 1px solid var(--card-border);
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text);
-  font-size: 0.95rem;
-  font-weight: 600;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #5ee6d6;
   text-decoration: none;
-  overflow: hidden;
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, color 0.18s ease, filter 0.18s ease;
 }
-
-/* shine sweep on hover */
-.btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.5s ease;
-}
-.btn:hover::after { left: 140%; }
 
 .btn:hover {
-  transform: translateY(-3px);
-  border-color: rgba(109, 139, 255, 0.6);
-  background: rgba(109, 139, 255, 0.14);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  transform: translateY(-4px);
+  color: #8af3e6;
+  filter: drop-shadow(0 6px 14px rgba(94, 230, 214, 0.55));
 }
 
 .btn svg { flex-shrink: 0; }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border-color: transparent;
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(109, 139, 255, 0.35);
-}
-.btn-primary:hover {
-  background: linear-gradient(135deg, #7d98ff, #b58cff);
-  border-color: transparent;
-  box-shadow: 0 14px 32px rgba(109, 139, 255, 0.45);
-}
-
+/* ---------- Footer ---------- */
 .footer {
   color: var(--muted);
   font-size: 0.85rem;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
   opacity: 0;
   animation: fadeUp 0.6s ease 0.7s forwards;
 }
@@ -367,12 +319,15 @@ body {
 /* ---------- Responsive ---------- */
 @media (max-width: 480px) {
   .card { padding: 38px 24px 34px; }
-  .btn { flex: 1 1 calc(50% - 12px); justify-content: center; }
 }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .blob, .avatar, .avatar-ring, .name, .role-dot { animation: none !important; }
-  .card, .eyebrow, .name, .role, .tagline, .actions, .footer { animation: none !important; opacity: 1 !important; }
+  .bg, .avatar, .avatar-ring, .name, .role-dot { animation: none !important; }
+  .card, .name, .role, .exams, .tagline, .actions, .footer {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
   .btn:hover { transform: none; }
 }
