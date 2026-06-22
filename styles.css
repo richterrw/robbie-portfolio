@@ -182,12 +182,57 @@ body {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   padding: 7px 16px;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   border: 1px solid rgba(109, 139, 255, 0.3);
   border-radius: 999px;
   background: rgba(109, 139, 255, 0.1);
   opacity: 0;
   animation: fadeUp 0.6s ease 0.35s forwards;
+}
+
+/* ---------- Exam badges ---------- */
+.exams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.42s forwards;
+}
+
+.exam {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  color: #dbe6f7;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.exam::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9aa6c4;
+  box-shadow: 0 0 6px rgba(154, 166, 196, 0.5);
+}
+
+.exam-done {
+  color: #bff6ec;
+  background: rgba(94, 230, 214, 0.12);
+  border-color: rgba(94, 230, 214, 0.4);
+}
+
+.exam-done::before {
+  background: #5ee6d6;
+  box-shadow: 0 0 8px rgba(94, 230, 214, 0.8);
 }
 
 .role-dot {
@@ -279,7 +324,7 @@ body {
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .bg, .avatar, .avatar-ring, .name, .role-dot { animation: none !important; }
-  .card, .eyebrow, .name, .role, .tagline, .actions, .footer {
+  .card, .name, .role, .exams, .tagline, .actions, .footer {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
