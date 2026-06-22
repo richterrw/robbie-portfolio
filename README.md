@@ -1,45 +1,77 @@
-# Robert Richter — Personal Site
+# Robbie Richter — Personal Website
 
-A simple, dark-themed landing page that links to my resume, LinkedIn, and GitHub.
+My personal landing page: a single, fast-loading page with my résumé, LinkedIn, GitHub, and email — set against a Blue Ridge Mountains sunset. 🏔️
 
-🔗 **Live:** https://richterrw.github.io/robbie-portfolio/ _(after first deploy)_
+🔗 **Live:** https://richterrw.github.io/robbie-portfolio/
 
-## Files
+![Robbie Richter — personal website](preview.jpg)
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | The landing page markup. |
-| `styles.css` | Dark, modern styling. |
-| `resume.pdf` | My resume. |
-| `.nojekyll` | Tells GitHub Pages to serve files as-is (no Jekyll processing). |
+---
 
-## Add your resume
+## About
 
-Drop your resume into the repo root named `resume.pdf` (overwriting the
-placeholder), then commit and push. The **Resume** button links to it.
+I'm Robbie Richter, an Actuarial Candidate with a B.S. in Mathematics and Actuarial Science from Appalachian State University. This site is a clean, modern hub that points recruiters and collaborators to everything in one place.
 
-## Deploy (GitHub Pages)
+## Features
 
-1. Push this repo to GitHub on the `main` branch.
-2. Go to **Settings → Pages**.
-3. Under **Source**, choose **Deploy from a branch**.
-4. Set **Branch** to `main` and the folder to **/ (root)**, then **Save**.
+- 🌄 **Full-bleed photo background** — a real Blue Ridge sunset with a subtle slow zoom
+- 🪟 **Floating glass card** — frosted, translucent, gently animated
+- 🙂 **Profile headshot** in a spinning teal gradient ring
+- 🔗 **Quick links** — Résumé (PDF), LinkedIn, GitHub, and Email as clean icon buttons
+- ✨ **Polished motion** — shimmering name, fade-in entrance, hover effects
+- ♿ **Accessible** — screen-reader labels and full `prefers-reduced-motion` support
+- 📱 **Responsive** — looks great on desktop and mobile
+- ⚡ **Zero dependencies** — plain HTML, CSS, and a touch of JavaScript
 
-GitHub publishes the site directly from `main`. Every push to `main` updates it automatically.
+## Tech Stack
 
-## Edit your details
+- **HTML5** + **CSS3** (custom properties, backdrop-filter, keyframe animations)
+- **Vanilla JavaScript** (no frameworks, no build step)
+- **GitHub Pages** for hosting
 
-Open `index.html` and update the links if anything changes:
+## Project Structure
 
-- **LinkedIn:** `https://www.linkedin.com/in/robert---richter`
-- **GitHub:** `https://github.com/richterrw`
-- **Email:** `robbierichter15@gmail.com`
+```
+robbie-portfolio/
+├── index.html      # Page markup
+├── styles.css      # Styling and animations
+├── background.jpg  # Blue Ridge sunset background
+├── me.jpg          # Profile headshot
+├── resume.pdf      # Résumé (linked from the Résumé button)
+├── preview.jpg     # Screenshot used in this README
+└── .nojekyll       # Serve files as-is (no Jekyll processing)
+```
 
-## Local preview
+## Run Locally
 
-Just open `index.html` in a browser, or run a tiny server:
+Clone the repo and open `index.html` in your browser, or serve it locally:
 
 ```bash
+git clone https://github.com/richterrw/robbie-portfolio.git
+cd robbie-portfolio
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
+
+## Deployment
+
+Hosted on **GitHub Pages** (deploy from `main`):
+
+1. **Settings → Pages**
+2. **Source:** *Deploy from a branch*
+3. **Branch:** `main` · folder `/ (root)` → **Save**
+
+Every push to `main` republishes the site automatically.
+
+## Customization
+
+- **Links:** edit the `href`s in `index.html` (LinkedIn, GitHub, email)
+- **Résumé:** replace `resume.pdf`
+- **Photo / background:** swap `me.jpg` and `background.jpg`
+- **Colors:** tweak the CSS custom properties at the top of `styles.css`
+
+## Contact
+
+- **LinkedIn:** https://www.linkedin.com/in/robert---richter
+- **GitHub:** https://github.com/richterrw
+- **Email:** robbierichter15@gmail.com
