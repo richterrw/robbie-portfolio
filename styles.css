@@ -30,51 +30,30 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Blue Ridge Mountains scene ---------- */
-.scene {
+/* ---------- Blue Ridge sunset photo background ---------- */
+.bg {
   position: fixed;
   inset: 0;
   z-index: 0;
-  overflow: hidden;
+  background: url("background.jpg") center center / cover no-repeat;
+  /* slow gentle zoom for life */
+  animation: slowZoom 28s ease-in-out infinite alternate;
 }
 
-.mountains {
-  position: absolute;
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+
+/* Darkening scrim for text contrast */
+.scrim {
+  position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.star { animation: twinkle 4s ease-in-out infinite; }
-.star:nth-child(2n) { animation-delay: 1.2s; }
-.star:nth-child(3n) { animation-delay: 2.1s; }
-.star:nth-child(4n) { animation-delay: 3s; }
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.25; }
-  50% { opacity: 1; }
-}
-
-/* Drifting mist between ridges */
-.mist {
-  position: absolute;
-  left: -30%;
-  width: 160%;
-  height: 130px;
+  z-index: 1;
   pointer-events: none;
-  background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(220, 235, 255, 0.18), transparent 70%);
-  filter: blur(10px);
-  opacity: 0.7;
-}
-.mist-1 { top: 56%; animation: drift 26s linear infinite; }
-.mist-2 { top: 66%; height: 110px; opacity: 0.5; animation: drift 34s linear infinite reverse; }
-.mist-3 { top: 75%; height: 150px; opacity: 0.45; animation: drift 44s linear infinite; }
-
-@keyframes drift {
-  0% { transform: translateX(-8%); }
-  50% { transform: translateX(8%); }
-  100% { transform: translateX(-8%); }
+  background:
+    radial-gradient(70% 60% at 50% 45%, rgba(6, 12, 26, 0.35), transparent 75%),
+    linear-gradient(180deg, rgba(6, 12, 26, 0.30) 0%, rgba(6, 12, 26, 0.10) 40%, rgba(6, 12, 26, 0.45) 100%);
 }
 
 /* ---------- Hero / card ---------- */
@@ -94,17 +73,25 @@ body {
 .card {
   position: relative;
   width: 100%;
-  background: rgba(12, 20, 38, 0.62);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  background: rgba(12, 20, 38, 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   padding: 46px 40px 42px;
   text-align: center;
   box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    0 40px 90px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  /* entrance, then gently float in front of the background */
+  animation:
+    rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both,
+    cardFloat 7s ease-in-out 0.9s infinite;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 /* gradient hairline border accent */
@@ -334,10 +321,11 @@ body {
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .star, .mist, .avatar, .avatar-ring, .name, .role-dot { animation: none !important; }
+  .bg, .avatar, .avatar-ring, .name, .role-dot { animation: none !important; }
   .card, .eyebrow, .name, .role, .tagline, .actions, .footer {
     animation: none !important;
     opacity: 1 !important;
+    transform: none !important;
   }
   .btn:hover { transform: none; }
 }
