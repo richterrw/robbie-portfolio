@@ -10,8 +10,8 @@ A simple, dark-themed landing page that links to my resume, LinkedIn, and GitHub
 | --- | --- |
 | `index.html` | The landing page markup. |
 | `styles.css` | Dark, modern styling. |
-| `resume.pdf` | My resume — **replace the placeholder** with your real PDF. |
-| `.github/workflows/deploy.yml` | Auto-deploys to GitHub Pages on push to `main`. |
+| `resume.pdf` | My resume. |
+| `.nojekyll` | Tells GitHub Pages to serve files as-is (no Jekyll processing). |
 
 ## Add your resume
 
@@ -21,8 +21,11 @@ placeholder), then commit and push. The **Resume** button links to it.
 ## Deploy (GitHub Pages)
 
 1. Push this repo to GitHub on the `main` branch.
-2. Go to **Settings → Pages** and set **Source** to **GitHub Actions**.
-3. The included workflow publishes the site automatically on every push to `main`.
+2. Go to **Settings → Pages**.
+3. Under **Source**, choose **Deploy from a branch**.
+4. Set **Branch** to `main` and the folder to **/ (root)**, then **Save**.
+
+GitHub publishes the site directly from `main`. Every push to `main` updates it automatically.
 
 ## Edit your details
 
