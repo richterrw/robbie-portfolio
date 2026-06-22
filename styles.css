@@ -252,7 +252,7 @@ body {
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   justify-content: center;
   opacity: 0;
   animation: fadeUp 0.6s ease 0.55s forwards;
@@ -262,14 +262,13 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 12px 20px;
-  border-radius: 13px;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
   border: 1px solid var(--card-border);
   background: rgba(255, 255, 255, 0.05);
   color: var(--text);
-  font-size: 0.95rem;
-  font-weight: 600;
   text-decoration: none;
   overflow: hidden;
   transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
@@ -331,7 +330,6 @@ body {
 /* ---------- Responsive ---------- */
 @media (max-width: 480px) {
   .card { padding: 38px 24px 34px; }
-  .btn { flex: 1 1 calc(50% - 12px); justify-content: center; }
 }
 
 /* ---------- Reduced motion ---------- */
